@@ -2,67 +2,50 @@
 
 Javascript flashcards.
 
-Architecture:
-Build attributes out in an object.
-Populate the DOM.
-Cards are populated into a stack on the left side of the screen. Then they move into their grids.
-
-
-Study mode:
-
-All cards laid out on the board, freely flipping back and forth.
-
-
-Game mode:
-
-Cards animate in from left to an offset card stack on the right of the screen. The first card is picked up after a brief pause.
-
-
 Tasks Needed:
--Get card fronts and backs or decide on style
--Animate flip
--Populate the study mode
--Create study mode and test mode buttons
--Populate the objects with study content
--Create test mode logic
--Create test mode animation
+- Add keyboard flip capability
+- This will need event listeners changed to click and event listeners on some part of keyboard
+- Need test mode.
+- Then logic for whether they got it right or not.
+- Will need to create a 1 card population that updates what array it is drawn from based on a "win" condition which removes it from the built array of unanswered questions.
 
 
 */
 
 const cardArrayOfObj = [
     {
-        question: 'card1',
-        answer: 'c1v'
+        question: 'T or F: An arrow function has implicit return',
+        answer: 'True'
     },
     {
-        question: 'card2',
-        answer: 'c2v'
+        question: 'What are the JS primitive data types?',
+        answer: 'Boolean, Number, String, Undefined, Null'
     },
     {
-        question: 'card3',
-        answer: 'c3v'
+        question: 'T or F: forEach() returns a value to its array',
+        answer: 'False'
     },
     {
-        question: 'card4',
-        answer: 'c4v'
+        question: 'What array method returns true if one of its elements passes the provided function?',
+        answer: '.some()'
     },
     {
-        question: 'card5',
-        answer: 'c5v'
+        question: 'What array method returns an empty array if no matches are found in the provided function?',
+        answer: '.filter()'
     },
     {
-        question: 'card6',
-        answer: 'c6v'
+        question: 'What array method creates and returns a new array with the result of the provided function executed on every element?',
+        answer: '.map()'
     }
 ]
 
 // Grab main content container element
 const mainBox = document.querySelector('.main-content');
 
-// Setting state
+// Setting state - this must grab 1 card from the test questions array
 const totalNumCards = cardArrayOfObj.length;
 let randomArray = [];
+let unansweredArray = [];
 
 // Flip card
 function flipCard() {
@@ -73,40 +56,56 @@ function flipCard() {
 // Creates and adds cards to the DOM
 function createBoard() {
 
-    // loops through array of randomly generated numbers when board is created so that cards are in random order
-        let numberGenerator = function(arr) {
-          if (arr.length >= totalNumCards) return;
-          let randomNumber = Math.floor(Math.random() * totalNumCards);
-          if (arr.indexOf(randomNumber) < 0) {
-            arr.push(randomNumber);
-          }
-        numberGenerator(arr);
-        };
-      numberGenerator(randomArray);
+    // // loops through array of randomly generated numbers when board is created so that cards are in random order
+    //     let numberGenerator = function(arr) {
+    //       if (arr.length >= totalNumCards) return;
+    //       let randomNumber = Math.floor(Math.random() * totalNumCards);
+    //       if (arr.indexOf(randomNumber) < 0) {
+    //         arr.push(randomNumber);
+    //       }
+    //     numberGenerator(arr);
+    //     };
+    //   numberGenerator(randomArray);
 
 
 
 
     
     // loops through card creation
-      for (let i = 0; i < randomArray.length; i++) {
-        //Outer box of each card that allows arrangement on the DOM
-        let outerBox = document.createElement('div');
-            // outerBox.classList.add('card-control'); This class must be added by event for animation
-            outerBox.classList.add('card-control-initial-load')
-            outerBox.setAttribute('card-number', randomArray[i]);
+    for (let i = 0; i < cardArrayOfObj.length; i++) {
 
-            // Grab testing button
+        //Push all objects on original data to a new array of "unanswered" questions
+        unansweredArray.push(cardArrayOfObj[i])
 
-                
-            function jsCardsMove(evt) {
-                evt.preventDefault();
-                outerBox.classList.toggle('card-control')
-                outerBox.classList.toggle('card-control-initial-load')
-            }
+    } 
+    
+    
 
-            const jsButton = document.querySelector('.study-js');
-            jsButton.addEventListener('click', jsCardsMove)
+    // Questions:
+    /*
+        Iterating through new array. Pass in an iterator into newCard?
+        Animation issue. How to fix step animation issue.
+
+    */
+
+       
+
+        // New loop to iterate through unanswered questions and create cards to send to the DOM.
+        // Call new card.
+        function newCard() {
+             
+
+            //Take one card from unanswered array and create it on the DOM
+            let j = 0;
+            let currentCard = unansweredArray[j]
+            
+            //Outer box of each card that allows arrangement on the DOM
+            let outerBox = document.createElement('div');
+                outerBox.classList.add('card-control-initial-load')
+                // outerBox.setAttribute('card-number', randomArray[i]);
+
+            const jsButton = document.querySelector('.next-card');
+            jsButton.addEventListener('click', getNextCard)
             
             //Outer box of nested divs necessary to animate cards
             let innerBox = document.createElement('div');
@@ -114,21 +113,48 @@ function createBoard() {
 
             //These two divs append as front and back to the above nest box    
             let cardSide1 = document.createElement('div');
-                cardSide1.classList.add('card-inside');
-                cardSide1.innerHTML = cardArrayOfObj[i].answer
+                cardSide1.classList.add('card-outside');
+                cardSide1.innerHTML = currentCard.answer
             let cardSide2 = document.createElement('div');
-                cardSide2.classList.add('card-outside');
-                cardSide2.innerHTML = cardArrayOfObj[i].question
+                cardSide2.classList.add('card-inside');
+                cardSide2.innerHTML = currentCard.question
 
                 innerBox.appendChild(cardSide1);
                 innerBox.appendChild(cardSide2);
+                
+                outerBox.appendChild(innerBox);
+                mainBox.appendChild(outerBox);
 
-        // cardElement.innerHTML = cardArrayOfObj[i].value
-        
-        outerBox.appendChild(innerBox);
-        mainBox.appendChild(outerBox);
-      }
-    }
+            // Grab list buttons
+            let nextCardButton = document.querySelector('.next-card')
+            let correctAnswerButton = document.querySelector('.correct-answer')
+
+            nextCardButton.addEventListener('click', getNextCard)
+            correctAnswerButton.addEventListener('click', rightAnswer)
+                
+            function getNextCard(evt) {
+                // do things
+                evt.preventDefault();
+                outerBox.classList.toggle('card-control')
+                outerBox.classList.toggle('card-control-initial-load')
+                return j++
+            }
+            function rightAnswer(evt) {
+                evt.preventDefault();
+                // call getNextCard, remove the current card from unanswered array
+                unansweredArray.splice(0, 1)
+                getNextCard(evt)
+
+                newCard()
+
+            }
+
+        } // This closes newCard()
+
+        newCard();
+
+} // This closes createBoard()
+    
 
 
 createBoard()     
