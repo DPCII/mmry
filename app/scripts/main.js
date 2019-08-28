@@ -47,6 +47,7 @@ const totalNumCards = cardArrayOfObj.length;
 let randomArray = [];
 let unansweredArray = [];
 
+
 // Flip card
 function flipCard() {
     //does nothing yet
@@ -66,9 +67,6 @@ function createBoard() {
     //     numberGenerator(arr);
     //     };
     //   numberGenerator(randomArray);
-
-
-
 
     
     // loops through card creation
@@ -96,19 +94,17 @@ function createBoard() {
         // Call new card.
         function newCard() {
              
-
             //Take one card from unanswered array and create it on the DOM
-            let j = 0;
-            let currentCard = unansweredArray[j]
+            let currentCard = unansweredArray[0]
             
             //Outer box of each card that allows arrangement on the DOM
             let outerBox = document.createElement('div');
                 outerBox.classList.add('card-control-initial-load')
                 // outerBox.setAttribute('card-number', randomArray[i]);
-                setTimeout(() => outerBox.classList.add('step2'), 500)
+                setTimeout(() => outerBox.classList.add('step2'), 200)
 
-            const jsButton = document.querySelector('.next-card');
-            jsButton.addEventListener('click', getNextCard)
+            // const jsButton = document.querySelector('.next-card');
+            // jsButton.addEventListener('click', getNextCard)
             
             //Outer box of nested divs necessary to animate cards
             let innerBox = document.createElement('div');
@@ -138,10 +134,18 @@ function createBoard() {
             correctAnswerButton.addEventListener('click', rightAnswer)
                 
             function getNextCard(evt) {
-                // do things
                 evt.preventDefault();
                 outerBox.classList.add('step3')
-                return j++
+                let firstEl = unansweredArray.shift()
+                unansweredArray.push(firstEl)
+                outerBox.classList.remove('step2')
+                setTimeout(() => outerBox.classList.remove('step3'), 590)
+/*              cardSide1.remove()
+                cardSide2.remove()
+                innerBox.remove()
+                outerBox.remove() */
+                setTimeout(() => outerBox.remove(), 600)
+                newCard();
             }
             function rightAnswer(evt) {
                 evt.preventDefault();
