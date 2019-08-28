@@ -1,0 +1,143 @@
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  background: #fafafa;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+// Testing button
+.study-js, .study-css {
+  height: 50px;
+  width: 200px;
+  background-color: rgb(221, 224, 226);
+  outline: none;
+  &:hover {
+    background-color: #eee;
+    outline: none;
+  }
+}
+
+
+//This class is page centered and contains the focal activity of the page
+.main-container {
+  margin: 0 auto;
+  border: 2px blue solid;
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  //This class establishes a grid for cards to fill
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    // border: 1px maroon solid;
+    height: auto;
+    width: 700px;
+    align-content: center;
+  }
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  
+}
+
+@keyframes moveToCenter {
+  0% {
+    transform: translate(-500%, -500%);
+  }
+  100% {
+    transform: translate(-100%, 0%);
+  }
+}
+
+@keyframes moveOffCenter {
+  0% {
+    transform: translate(-100%, 0%);
+  }
+  100% {
+    transform: translate(500%, -500%);
+  }
+}
+
+// This class is necessary for control of cards to move around the DOM while maintaining the ability to animate
+.card-control {
+  height: 235px;
+  width: 155px;
+  background-color: transparent;
+  animation: moveToCenter 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+
+// This class is used for initial load in of card deck
+.card-control-initial-load {
+  height: 235px;
+  width: 155px;
+  background-color: transparent;
+  animation: moveOffCenter 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+
+// This class contains the front and back sides of each card
+.card {
+  position: absolute;
+  height: 235px;
+  width: 155px;
+  transform-style: preserve-3d;
+  perspective: 700px;
+  transition: .6s;
+    &:hover .card-inside {
+      transform: rotateX(-180deg);
+    }
+    &:hover .card-outside {
+      transform: rotateX(0deg);
+    }
+
+    // Card answer side
+  .card-inside {
+    height: 230px;
+    width: 150px;
+    border: 1px black solid;
+    background-color: lightgray;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+    transition: .6s;
+  }
+    // Card question side
+  .card-outside {
+    height: 230px;
+    width: 150px;
+    border: 1px black solid;
+    background-color: papayawhip;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateX(180deg);
+    transition: .6s;
+  }
+
+}
+
+
+
+// When individual manipulation is needed, use this.
+
+/* 
+div[card-number="4"] {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+} */
