@@ -76,13 +76,12 @@ body {
   }
 }
 
-// This class is necessary for control of cards to move around the DOM while maintaining the ability to animate
+// Initial position
 .card-control {
   height: 235px;
   width: 155px;
   background-color: transparent;
-  animation: moveToCenter 1s ease-in-out;
-  animation-fill-mode: forwards;
+
 }
 
 
@@ -91,6 +90,16 @@ body {
   height: 235px;
   width: 155px;
   background-color: transparent;
+  transform: translate(-800%, -500%)
+}
+
+// Set of classes to store animation only
+.step2 {
+  animation: moveToCenter 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.step3 {
   animation: moveOffCenter 1s ease-in-out;
   animation-fill-mode: forwards;
 }

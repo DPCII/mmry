@@ -86,6 +86,8 @@ function createBoard() {
         Iterating through new array. Pass in an iterator into newCard?
         Animation issue. How to fix step animation issue.
 
+        Animation: make 3rd class. Add one class at a time. Start with class that is offset off screen. Add the second class on card creation. Then add third class and destroy it when button is clicked.
+
     */
 
        
@@ -103,6 +105,7 @@ function createBoard() {
             let outerBox = document.createElement('div');
                 outerBox.classList.add('card-control-initial-load')
                 // outerBox.setAttribute('card-number', randomArray[i]);
+                setTimeout(() => outerBox.classList.add('.step2'), 500)
 
             const jsButton = document.querySelector('.next-card');
             jsButton.addEventListener('click', getNextCard)
@@ -125,6 +128,8 @@ function createBoard() {
                 outerBox.appendChild(innerBox);
                 mainBox.appendChild(outerBox);
 
+            
+
             // Grab list buttons
             let nextCardButton = document.querySelector('.next-card')
             let correctAnswerButton = document.querySelector('.correct-answer')
@@ -135,8 +140,7 @@ function createBoard() {
             function getNextCard(evt) {
                 // do things
                 evt.preventDefault();
-                outerBox.classList.toggle('card-control')
-                outerBox.classList.toggle('card-control-initial-load')
+                outerBox.classList.add('.step3')
                 return j++
             }
             function rightAnswer(evt) {
