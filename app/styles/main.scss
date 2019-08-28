@@ -76,21 +76,12 @@ body {
   }
 }
 
-// Initial position
-.card-control {
-  height: 235px;
-  width: 155px;
-  background-color: transparent;
-
-}
-
-
-// This class is used for initial load in of card deck
+// Places card off-screen on initial card creation
 .card-control-initial-load {
   height: 235px;
   width: 155px;
   background-color: transparent;
-  transform: translate(-800%, -500%)
+  transform: translate(-800%, -500%);
 }
 
 // Set of classes to store animation only
@@ -103,6 +94,11 @@ body {
   animation: moveOffCenter 1s ease-in-out;
   animation-fill-mode: forwards;
 }
+/* .card-control {
+  height: 235px;
+  width: 155px;
+  background-color: transparent;
+} */
 
 
 // This class contains the front and back sides of each card

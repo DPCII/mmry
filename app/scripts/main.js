@@ -105,7 +105,7 @@ function createBoard() {
             let outerBox = document.createElement('div');
                 outerBox.classList.add('card-control-initial-load')
                 // outerBox.setAttribute('card-number', randomArray[i]);
-                setTimeout(() => outerBox.classList.add('.step2'), 500)
+                setTimeout(() => outerBox.classList.add('step2'), 500)
 
             const jsButton = document.querySelector('.next-card');
             jsButton.addEventListener('click', getNextCard)
@@ -140,7 +140,7 @@ function createBoard() {
             function getNextCard(evt) {
                 // do things
                 evt.preventDefault();
-                outerBox.classList.add('.step3')
+                outerBox.classList.add('step3')
                 return j++
             }
             function rightAnswer(evt) {
