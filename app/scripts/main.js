@@ -13,15 +13,23 @@ introContainer.classList.add('intro-container')
 const introDescrip = document.createElement('p')
 introDescrip.classList.add('intro-descrip')
 introDescrip.innerHTML = 'Create flashcards for your own study deck, or select from available options.'
-const introQuestion = document.createElement('input')
+let introQuestion = document.createElement('input')
 introQuestion.classList.add('intro-question')
 introQuestion.placeholder = 'Write your question here...'
-const introAnswer = document.createElement('input')
+let introAnswer = document.createElement('input')
 introAnswer.classList.add('intro-answer')
-introAnswer.placeholder = '... then write the answer here and click submit!'
+introAnswer.placeholder = '... then write the answer here.'
 const introSubmit = document.createElement('span')
 introSubmit.classList.add('intro-submit')
 introSubmit.innerHTML = 'Submit'
+introSubmit.addEventListener('click', evt => {
+    evt.preventDefault()
+    let questionValue = document.querySelector('.intro-question')
+    let answerValue = document.querySelector('.intro-answer')
+    addNewQA(questionValue.value, answerValue.value)
+    questionValue.value = null;
+    answerValue.value = null;
+})
 const introComplete = document.createElement('span')
 introComplete.classList.add('intro-complete')
 introComplete.innerHTML = 'Ready, Go'
@@ -47,9 +55,18 @@ introContainer.appendChild(introQuestion)
 introContainer.appendChild(introDescrip)
 introPage.appendChild(introContainer)
 
+// Adding custom cards
+
+let createdArray = []
+
+function addNewQA(inputQ, inputA) {
+
+    createdArray.push({question: inputQ.toString(), answer: inputA.toString()})
+}
 
 
-const cardArrayOfObj = [
+
+let cardArrayOfObj = [
     {
         question: 'T or F: One-line arrow functions include an implicit return',
         answer: 'True'
@@ -126,9 +143,6 @@ function createBoard() {
         unansweredArray.push(cardArrayOfObj[i])
 
     } 
-    
-    
-       
 
     // New loop to iterate through unanswered questions and create cards to send to the DOM.
     // Call new card.

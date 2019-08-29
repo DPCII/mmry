@@ -15,7 +15,24 @@ body {
   overflow: hidden;
 }
 
-@media(min-width: 400px) {
+@media(min-width: 1px) {
+  .tiny-screen {
+    display: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 75px;
+    margin-bottom: 5000px;
+  }
+
+}
+
+@media(min-width: 300px) {
+  .tiny-screen {
+    display: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
 
   .overlay {
     height: 100%;
@@ -46,7 +63,7 @@ body {
     .intro-descrip {
     background-color: transparent;
     color: white;
-    height: 100px;
+    height: 90px;
     width: 100%;
     order: 1;
     margin: 5% auto -8% auto;
@@ -54,16 +71,16 @@ body {
   }
   .intro-question {
     order: 2;
-    height: 40px;
-    width: 100%;
+    height: 35px;
+    width: inherit;
     margin: 0 auto;
     padding: 4px;
     padding-left: 10px;
   }
   .intro-answer {
     order: 3;
-    height: 40px;
-    width: 100%;
+    height: 35px;
+    width: inherit;
     margin: 0 auto;
     padding: 4px;
     padding-left: 10px;
@@ -295,82 +312,17 @@ body {
 
 .card-question {
   background-image: radial-gradient(closest-side, rgb(247, 225, 225), rgb(255, 236, 236));
-                    // radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
-                    // background-color: #fff;
-  // position: absolute;
-  // backface-visibility: hidden;
-  // transform: rotateX(0deg);
-  // transition: transform 1s;
+
 }
 
 .card-answer {
- /*  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
-                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent); */
   background-color: #eee;
-  // position: absolute;
-  // backface-visibility: hidden;
   transform: rotateX(180deg);
 }
 
-// @keyframes cardFlip {
-//   0% { transform: perspective(600px) rotateX(0deg); }
-//   100% { transform: perspective(600px) rotateX(180deg); }
-// }
-
 .flipped {
   transform: translateY(-100%) rotateX(180deg)
-  // animation: cardFlip 1s ease-in-out both;
-  // transform-style: preserve-3d;
-  // perspective: 600px;
 }
-
-// .flipped2 {
-//   animation: flipBack 1s ease-in-out forwards;
-//   transform-style: preserve-3d;
-//   perspective: 600px;
-// }
-
-
-/* // This class contains the front and back sides of each card
-.card {
-  position: absolute;
-  height: 235px;
-  width: 155px;
-  transform-style: preserve-3d;
-  perspective: 700px;
-  transition: .6s;
-    &:active .card-question {
-      transform: rotateX(-180deg);
-    }
-    &:active .card-answer {
-      transform: rotateX(0deg);
-    }
-
-    
-    // Card question side
-  .card-question {
-    height: 230px;
-    width: 150px;
-    border: 1px black solid;
-    background-color: rgb(255, 244, 213);
-    position: absolute;
-    backface-visibility: hidden;
-    transform: rotateX(0deg);
-    transition: .6s;
-  }
-    // Card answer side
-  .card-answer {
-    height: 230px;
-    width: 150px;
-    border: 1px black solid;
-    background-color: rgb(236, 229, 229);
-    position: absolute;
-    backface-visibility: hidden;
-    transform: rotateX(180deg);
-    transition: .6s;
-  }
-
-} */
 
 
 
@@ -387,8 +339,6 @@ div[card-number="4"] {
 Metallic radial gradient
 background-image: radial-gradient(ellipse at top, rgba(240, 240, 240, 0.979), transparent),
 radial-gradient(ellipse at bottom, rgba(175, 176, 177, 0.945), transparent); */
-
-
 
 
 }
