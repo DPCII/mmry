@@ -7,7 +7,7 @@
 
 body {
   background: #fcf6e9;
-  font-family: 'Manjari', sans-serif;
+  font-family: 'Finger Paint', 'Manjari', sans-serif;
   font-weight: 600;
   font-size: 18px;
   color: #333;
@@ -51,7 +51,7 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr;
         list-style-type: none;
-        margin: 0 0 0 -23%;
+        margin: 0 0 0 -17%;
         align-content: center;
         li {
           margin: 0 auto;
@@ -90,7 +90,7 @@ body {
 // Places card off-screen on initial card creation
 .card-control-initial-load {
   height: 235px;
-  width: 155px;
+  width: 170px;
   background-color: transparent;
   transform: translate(-600%, -90%);
 }
@@ -135,7 +135,7 @@ body {
 }
 
 .card-question {
-  background-image: radial-gradient(closest-side, rgba(224, 205, 205), rgb(216, 216, 216));
+  background-image: radial-gradient(closest-side, rgb(247, 225, 225), rgb(255, 236, 236));
                     // radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
                     // background-color: #fff;
   position: absolute;
