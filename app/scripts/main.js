@@ -119,20 +119,20 @@ function createBoard() {
                 } )
 
                 // outerBox.setAttribute('card-number', randomArray[i]);
-                setTimeout(() => outerBox.classList.add('step2'), 200)
+                outerBox.classList.add('step2');
             
-            //Outer box of nested divs necessary to animate cards
+            //Box of nested divs necessary to animate cards
             let innerBox = document.createElement('div');
                 innerBox.classList.add('card');
                 innerBox.addEventListener('click', () => {
                     innerBox.classList.toggle('flipped')
                     console.log(innerBox.classList)
-                    let innerBoxClasses = Array.from(innerBox.classList)
-                    if(innerBoxClasses.some((el) => el === 'flipped')) {
-                        innerBox.classList.add('flipped2')
-                    } else {
-                        innerBox.classList.remove('flipped2')
-                    }
+                    // let innerBoxClasses = Array.from(innerBox.classList)
+                    // if(innerBoxClasses.some((el) => el === 'flipped')) {
+                    //     innerBox.classList.add('flipped2')
+                    // } else {
+                    //     innerBox.classList.remove('flipped2')
+                    // }
                 })
 
             //These two divs append as front and back to the above nest box    

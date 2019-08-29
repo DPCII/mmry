@@ -92,7 +92,8 @@ body {
   height: 235px;
   width: 170px;
   background-color: transparent;
-  transform: translate(-600%, -90%);
+  // transform: translate(-600%, -90%);
+  perspective: 600px;
 }
 
 // Set of classes to store animation only
@@ -115,9 +116,12 @@ body {
 
 //test
 .card {
-  position: absolute;
   height: 100%;
   width: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  transform-origin: bottom;
 }
 
 .card div {
@@ -138,41 +142,38 @@ body {
   background-image: radial-gradient(closest-side, rgb(247, 225, 225), rgb(255, 236, 236));
                     // radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
                     // background-color: #fff;
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateX(0deg);
+  // position: absolute;
+  // backface-visibility: hidden;
+  // transform: rotateX(0deg);
+  // transition: transform 1s;
 }
 
 .card-answer {
  /*  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
                     radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent); */
   background-color: #eee;
-  position: absolute;
-  backface-visibility: hidden;
+  // position: absolute;
+  // backface-visibility: hidden;
   transform: rotateX(180deg);
 }
 
-@keyframes cardFlip {
-  0% { transform: perspective(600px) rotateX(0deg); }
-  100% { transform: perspective(600px) rotateX(180deg); }
-}
-
-@keyframes flipBack {
-  0% { transform: perspective(600px) rotateX(180deg); }
-  100% { transform: perspective(600px) rotateX(0deg); }
-}
+// @keyframes cardFlip {
+//   0% { transform: perspective(600px) rotateX(0deg); }
+//   100% { transform: perspective(600px) rotateX(180deg); }
+// }
 
 .flipped {
-  animation: cardFlip 1s ease-in-out forwards;
-  transform-style: preserve-3d;
-  perspective: 600px;
+  transform: translateY(-100%) rotateX(180deg)
+  // animation: cardFlip 1s ease-in-out both;
+  // transform-style: preserve-3d;
+  // perspective: 600px;
 }
 
-.flipped2 {
-  animation: flipBack 1s ease-in-out forwards;
-  transform-style: preserve-3d;
-  perspective: 600px;
-}
+// .flipped2 {
+//   animation: flipBack 1s ease-in-out forwards;
+//   transform-style: preserve-3d;
+//   perspective: 600px;
+// }
 
 
 /* // This class contains the front and back sides of each card
