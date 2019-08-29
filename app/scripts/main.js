@@ -14,12 +14,12 @@ Tasks Needed:
 
 const cardArrayOfObj = [
     {
-        question: 'T or F: An arrow function has implicit return',
+        question: 'T or F: One-line arrow functions include an implicit return',
         answer: 'True'
     },
     {
         question: 'What are the JS primitive data types?',
-        answer: 'Boolean, Number, String, Undefined, Null'
+        answer: 'Boolean, Number, String, Undefined, Null, Symbol'
     },
     {
         question: 'T or F: forEach() returns a value to its array',
@@ -81,10 +81,7 @@ function createBoard() {
 
     // Questions:
     /*
-        Iterating through new array. Pass in an iterator into newCard?
-        Animation issue. How to fix step animation issue.
-
-        Animation: make 3rd class. Add one class at a time. Start with class that is offset off screen. Add the second class on card creation. Then add third class and destroy it when button is clicked.
+        What is the relationship of absolute position to normal display positions? (Why are the buttons bouncing down and back up?)
 
     */
 
@@ -100,11 +97,11 @@ function createBoard() {
             //Outer box of each card that allows arrangement on the DOM
             let outerBox = document.createElement('div');
                 outerBox.classList.add('card-control-initial-load')
+                outerBox.addEventListener('click', () => {
+                    outerBox.classList.toggle('flipped')
+                })
                 // outerBox.setAttribute('card-number', randomArray[i]);
                 setTimeout(() => outerBox.classList.add('step2'), 200)
-
-            // const jsButton = document.querySelector('.next-card');
-            // jsButton.addEventListener('click', getNextCard)
             
             //Outer box of nested divs necessary to animate cards
             let innerBox = document.createElement('div');
@@ -112,10 +109,10 @@ function createBoard() {
 
             //These two divs append as front and back to the above nest box    
             let cardSide1 = document.createElement('div');
-                cardSide1.classList.add('card-outside');
+                cardSide1.classList.add('card-answer');
                 cardSide1.innerHTML = currentCard.answer
             let cardSide2 = document.createElement('div');
-                cardSide2.classList.add('card-inside');
+                cardSide2.classList.add('card-question');
                 cardSide2.innerHTML = currentCard.question
 
                 innerBox.appendChild(cardSide1);
@@ -138,22 +135,18 @@ function createBoard() {
                 outerBox.classList.add('step3')
                 let firstEl = unansweredArray.shift()
                 unansweredArray.push(firstEl)
-                outerBox.classList.remove('step2')
-                setTimeout(() => outerBox.classList.remove('step3'), 590)
-/*              cardSide1.remove()
-                cardSide2.remove()
-                innerBox.remove()
-                outerBox.remove() */
-                setTimeout(() => outerBox.remove(), 600)
-                newCard();
+                console.log(outerBox.parentNode.childNodes) // WTF, why does console.log fix the double card problem?
+                setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
+                setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
             }
             function rightAnswer(evt) {
                 evt.preventDefault();
                 // call getNextCard, remove the current card from unanswered array
+                outerBox.classList.add('step3')
+                console.log(outerBox.parentNode.childNodes) // WTF, why does console.log fix the double card problem?
+                setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
                 unansweredArray.splice(0, 1)
-                getNextCard(evt)
-
-                newCard()
+                setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
 
             }
 

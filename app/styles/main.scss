@@ -7,12 +7,16 @@
 
 body {
   background: #fcf6e9;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Manjari', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
   color: #333;
   text-align: center;
-  max-width: 100vw;
   overflow: hidden;
 }
+
+@media(min-width: 400px) {
+
 
 
 //This class is page centered and contains the focal activity of the page
@@ -24,6 +28,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: radial-gradient(ellipse at top, rgba(238, 237, 234, 0.719), transparent),
+                    radial-gradient(ellipse at bottom, rgba(249, 254, 255, 0.801), transparent);
+  background-image: url('../images/Dune\ Shadow\ 884px\ Carousel.jpg');
+  box-shadow: 3px 1px 10px 1px black;
 
   
   //This class establishes a grid for cards to fill
@@ -33,8 +41,8 @@ body {
     justify-content: center;
     align-items: center;
     // border: 1px maroon solid;
-    height: auto;
-    width: 374px;
+    height: 449px;
+    width: 275px;
     align-content: center;
     ul {
         display: grid;
@@ -60,7 +68,7 @@ body {
 
 @keyframes moveToCenter {
   0% {
-    transform: translate(-800%, -500%);
+    transform: translate(-600%, -90%);
   }
   100% {
     transform: translate(0%, -15%);
@@ -72,7 +80,7 @@ body {
     transform: translate(0%, -15%);
   }
   100% {
-    transform: translate(800%, -500%);
+    transform: translate(600%, -90%);
   }
 }
 
@@ -81,7 +89,7 @@ body {
   height: 235px;
   width: 155px;
   background-color: transparent;
-  transform: translate(-800%, -500%);
+  transform: translate(-600%, -90%);
 }
 
 // Set of classes to store animation only
@@ -101,7 +109,57 @@ body {
 } */
 
 
-// This class contains the front and back sides of each card
+
+//test
+.card {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.card div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  height: 100%;
+  width: 100%;
+  border: 1px black solid;
+  backface-visibility: hidden;
+  text-align: center;
+  position: absolute;
+  box-shadow: 1px 1px 7px .5px black;
+}
+
+.card-question {
+  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
+                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
+  position: absolute;
+  backface-visibility: hidden;
+  // transform: rotateX(-180deg);
+}
+
+.card-answer {
+  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
+                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateX(180deg);
+}
+
+@keyframes cardFlip {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(180deg); }
+}
+
+.flipped {
+  animation: cardFlip 1s ease-in-out forwards;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+
+/* // This class contains the front and back sides of each card
 .card {
   position: absolute;
   height: 235px;
@@ -109,15 +167,16 @@ body {
   transform-style: preserve-3d;
   perspective: 700px;
   transition: .6s;
-    &:hover .card-inside {
+    &:active .card-question {
       transform: rotateX(-180deg);
     }
-    &:hover .card-outside {
+    &:active .card-answer {
       transform: rotateX(0deg);
     }
 
-    // Card answer side
-  .card-inside {
+    
+    // Card question side
+  .card-question {
     height: 230px;
     width: 150px;
     border: 1px black solid;
@@ -127,8 +186,8 @@ body {
     transform: rotateX(0deg);
     transition: .6s;
   }
-    // Card question side
-  .card-outside {
+    // Card answer side
+  .card-answer {
     height: 230px;
     width: 150px;
     border: 1px black solid;
@@ -139,7 +198,7 @@ body {
     transition: .6s;
   }
 
-}
+} */
 
 
 
@@ -151,3 +210,23 @@ div[card-number="4"] {
   left: 50%;
   z-index: 1;
 } */
+
+/* 
+Metallic radial gradient
+background-image: radial-gradient(ellipse at top, rgba(240, 240, 240, 0.979), transparent),
+radial-gradient(ellipse at bottom, rgba(175, 176, 177, 0.945), transparent); */
+
+
+
+
+}
+
+@media(min-width: 796px) {
+
+    .main-container {
+      width: 796px;
+    }
+
+
+
+}
