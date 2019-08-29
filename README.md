@@ -6,7 +6,7 @@ This memorization flash card game rotates through your study material and elimin
 
 ### Technology
 
-The logic is all vanilla javascript and the styling is SCSS. 
+The logic is written in vanilla javascript and styling was made in SCSS. I used the Yeoman webapp builder to provide basic templates and for the built-in compiler. 
 
 ### Contributions
 
