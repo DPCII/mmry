@@ -83,6 +83,7 @@ body {
     &:hover {
       background-color: rgb(125, 204, 101);
       transform: scale(1.04);
+      cursor: pointer;
     }
     &:active {
       background-color: gray;
@@ -104,6 +105,7 @@ body {
     &:hover {
       background-color: rgb(255, 180, 67);
       transform: scale(1.04);
+      cursor: pointer;
     }
     &:active {
       background-color: gray;
@@ -142,6 +144,7 @@ body {
     &:hover {
       background-color: rgb(155, 238, 122);
       transform: scale(1.04);
+      cursor: pointer;
     }
     &:active {
       background-color: gray;

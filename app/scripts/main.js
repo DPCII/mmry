@@ -1,20 +1,8 @@
 /*
 
-Questions:
-
-Work on 3d. Done.
-Move click event listener to the card sides, not the container. Done.
-Branch. Done. 
-Intro page.
-Create decks?
+Tasks:
 
 Remove spam-ability.
-
-For intro page,
-
-Offer X premade deck, and immediately hide overlay if selected.
-
-Otherwise, inputs and
 
 */
 
@@ -46,7 +34,7 @@ jsStudyButton.innerHTML = 'JavaScript'
 jsStudyButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     introPage.classList.add('intro-fade-add')
-    // introPage.style.display = 'none'
+    setTimeout(createBoard, 500)
 })
 
 availableOptions.appendChild(jsStudyButton)
@@ -71,15 +59,15 @@ const cardArrayOfObj = [
         answer: 'Boolean, Number, String, Undefined, Null, Symbol'
     },
     {
-        question: 'T or F: forEach() returns a value',
+        question: 'T or F: the array method .forEach() returns a value',
         answer: 'False'
     },
     {
-        question: 'What array method returns true if one of its elements passes the provided function?',
+        question: 'What array method returns true if one of its elements passes your provided comparison function?',
         answer: '.some()'
     },
     {
-        question: 'What array method returns an empty array if no matches are found in the provided function?',
+        question: 'What array method returns an empty array if no matches are found in your provided comparison function?',
         answer: '.filter()'
     },
     {
@@ -91,9 +79,19 @@ const cardArrayOfObj = [
         answer: 'Hammad and John'
     },
     {
-        question: 'If your code doesn\'t work, what tool can you use to find the source?',
-        answer: 'A mirror'
+        question: 'What array method attached to the Array prototype creates an array out of your provided data?',
+        answer: 'Array.from()'
     },
+    {
+        question: 'What built-in array variable returns the number of elements in the associated array?',
+        answer: '.length'
+    },
+    {
+        question: 'What array method populates your array with all the same value?',
+        answer: '.fill()'
+    },
+  
+
 ]
 
 // Grab main content container element
@@ -223,7 +221,7 @@ function createBoard() {
     
 
 
-createBoard()     
+// createBoard()     
 
 
 
