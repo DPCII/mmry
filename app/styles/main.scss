@@ -24,13 +24,16 @@ body {
   margin: 0 auto;
   border: 2px rgba(0,0,0,0.2) solid;
   width: 275px;
-  height: 450px;
+  height: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: radial-gradient(ellipse at top, rgba(238, 237, 234, 0.719), transparent),
                     radial-gradient(ellipse at bottom, rgba(249, 254, 255, 0.801), transparent);
-  background-image: url('../images/Dune\ Shadow\ 884px\ Carousel.jpg');
+  background-image: url('../images/sanka_hakuu_shower_below_mountain.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   box-shadow: 3px 1px 10px 1px black;
 
   
@@ -132,16 +135,18 @@ body {
 }
 
 .card-question {
-  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
-                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
+  background-image: radial-gradient(closest-side, rgba(224, 205, 205), rgb(216, 216, 216));
+                    // radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
+                    // background-color: #fff;
   position: absolute;
   backface-visibility: hidden;
   // transform: rotateX(-180deg);
 }
 
 .card-answer {
-  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
-                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent);
+ /*  background-image: radial-gradient(ellipse at top, rgb(240, 240, 240), transparent),
+                    radial-gradient(ellipse at bottom, rgb(175, 176, 177), transparent); */
+  background-color: #eee;
   position: absolute;
   backface-visibility: hidden;
   transform: rotateX(180deg);

@@ -36,7 +36,15 @@ const cardArrayOfObj = [
     {
         question: 'What array method creates and returns a new array with the result of the provided function executed on every element?',
         answer: '.map()'
-    }
+    },
+    {
+        question: 'Who are the greatest SEI instructors in the world?',
+        answer: 'Hammad and John'
+    },
+    {
+        question: 'If your code doesn\'t work, what tool can you use to find the source?',
+        answer: 'A mirror'
+    },
 ]
 
 // Grab main content container element
