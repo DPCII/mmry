@@ -1,16 +1,24 @@
 /*
 
-Javascript flashcards.
+Questions:
 
-Tasks Needed:
-- Add keyboard flip capability
-- This will need event listeners changed to click and event listeners on some part of keyboard
-- Need test mode.
-- Then logic for whether they got it right or not.
-- Will need to create a 1 card population that updates what array it is drawn from based on a "win" condition which removes it from the built array of unanswered questions.
+Animation perspective issue on card fip.
+
+Animation card drop issue on card flip.
+
+Animation issue on step2 re-applying after card is flipped back to question side. I can't remove the step2 class when it arrives (I don't think I can), how can I make it stay in place until time to get rid of it?
+
+Animation issue on "getting rid" of a card that is in answer flipped state. Maybe flip it back automatically is the simplest fix.
 
 
+Work on 3d.
+Move click event listener to the card sides, not the container.
+Branch.
+Intro page.
+Create decks?
 */
+
+
 
 const cardArrayOfObj = [
     {
@@ -56,11 +64,6 @@ let randomArray = [];
 let unansweredArray = [];
 
 
-// Flip card
-function flipCard() {
-    //does nothing yet
-}
-
 
 // Creates and adds cards to the DOM
 function createBoard() {
@@ -105,20 +108,38 @@ function createBoard() {
             //Outer box of each card that allows arrangement on the DOM
             let outerBox = document.createElement('div');
                 outerBox.classList.add('card-control-initial-load')
-                outerBox.addEventListener('click', () => {
-                    outerBox.classList.toggle('flipped')
-                })
+
+
+                // Event listener for spacebar to flip cards
+                document.addEventListener('keypress', (evt) => {
+                    evt.preventDefault();
+                    if(evt.code === 'Space') {
+                        innerBox.classList.toggle('flipped')
+                    }
+                } )
+
                 // outerBox.setAttribute('card-number', randomArray[i]);
                 setTimeout(() => outerBox.classList.add('step2'), 200)
             
             //Outer box of nested divs necessary to animate cards
             let innerBox = document.createElement('div');
                 innerBox.classList.add('card');
+                innerBox.addEventListener('click', () => {
+                    innerBox.classList.toggle('flipped')
+                    console.log(innerBox.classList)
+                    let innerBoxClasses = Array.from(innerBox.classList)
+                    if(innerBoxClasses.some((el) => el === 'flipped')) {
+                        innerBox.classList.add('flipped2')
+                    } else {
+                        innerBox.classList.remove('flipped2')
+                    }
+                })
 
             //These two divs append as front and back to the above nest box    
             let cardSide1 = document.createElement('div');
                 cardSide1.classList.add('card-answer');
                 cardSide1.innerHTML = currentCard.answer
+                
             let cardSide2 = document.createElement('div');
                 cardSide2.classList.add('card-question');
                 cardSide2.innerHTML = currentCard.question
@@ -167,11 +188,6 @@ function createBoard() {
 
 
 createBoard()     
-
-
-
-// cardElement.addEventListener('click', flipCard);    
-
 
 
 

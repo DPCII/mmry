@@ -140,7 +140,7 @@ body {
                     // background-color: #fff;
   position: absolute;
   backface-visibility: hidden;
-  // transform: rotateX(-180deg);
+  transform: rotateX(0deg);
 }
 
 .card-answer {
@@ -153,12 +153,23 @@ body {
 }
 
 @keyframes cardFlip {
-  0% { transform: rotateX(0deg); }
-  100% { transform: rotateX(180deg); }
+  0% { transform: perspective(600px) rotateX(0deg); }
+  100% { transform: perspective(600px) rotateX(180deg); }
+}
+
+@keyframes flipBack {
+  0% { transform: perspective(600px) rotateX(180deg); }
+  100% { transform: perspective(600px) rotateX(0deg); }
 }
 
 .flipped {
   animation: cardFlip 1s ease-in-out forwards;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+.flipped2 {
+  animation: flipBack 1s ease-in-out forwards;
   transform-style: preserve-3d;
   perspective: 600px;
 }
