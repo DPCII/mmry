@@ -33,20 +33,39 @@ introSubmit.addEventListener('click', evt => {
 const introComplete = document.createElement('span')
 introComplete.classList.add('intro-complete')
 introComplete.innerHTML = 'Ready, Go'
+
+// Adding new decks from the Ready button
+introComplete.addEventListener('click', evt => {
+    evt.preventDefault()
+    // Ideally I would add a prompt to name the deck, which also names the variable, and places it in the list. But this would need either a database or the use of localstorage. 
+    cardArrayOfObj = createdArray;
+    introPage.classList.add('intro-fade-add')
+    setTimeout(createBoard, 500)
+})
+
+
+// Lists the finished decks
 const availableOptions = document.createElement('div')
 availableOptions.classList.add('available-options')
 
+
+// Pre-made deck
 const jsStudyButton = document.createElement('span')
 jsStudyButton.classList.add('js-study-button')
 jsStudyButton.innerHTML = 'JavaScript'
 jsStudyButton.addEventListener('click', (evt) => {
     evt.preventDefault();
+    cardArrayOfObj = jsDeck
     introPage.classList.add('intro-fade-add')
     setTimeout(createBoard, 500)
 })
 
+
+// Pre-made deck appended
 availableOptions.appendChild(jsStudyButton)
 
+
+// Appending all above created DOM elements
 introPage.appendChild(availableOptions)
 introContainer.appendChild(introComplete)
 introContainer.appendChild(introSubmit)
@@ -64,9 +83,14 @@ function addNewQA(inputQ, inputA) {
     createdArray.push({question: inputQ.toString(), answer: inputA.toString()})
 }
 
+// Ready button adds the array created to the list of available tests. But this must prompt for a name for the deck so it can be inserted in the deck's button.
 
 
-let cardArrayOfObj = [
+
+
+// Pre-made JS deck
+
+let jsDeck = [
     {
         question: 'T or F: One-line arrow functions include an implicit return',
         answer: 'True'
@@ -107,16 +131,17 @@ let cardArrayOfObj = [
         question: 'What array method populates your array with all the same value?',
         answer: '.fill()'
     },
-  
-
 ]
+
+// Array used to populate unanswered questions array
+let cardArrayOfObj = []
 
 // Grab main content container element
 const mainBox = document.querySelector('.main-content');
 
 // Setting state - this must grab 1 card from the test questions array
 const totalNumCards = cardArrayOfObj.length;
-let randomArray = [];
+// let randomArray = []; Associated to unfinished randomization 
 let unansweredArray = [];
 
 
@@ -173,12 +198,7 @@ function createBoard() {
             innerBox.addEventListener('click', () => {
                 innerBox.classList.toggle('flipped')
                 console.log(innerBox.classList)
-                // let innerBoxClasses = Array.from(innerBox.classList)
-                // if(innerBoxClasses.some((el) => el === 'flipped')) {
-                //     innerBox.classList.add('flipped2')
-                // } else {
-                //     innerBox.classList.remove('flipped2')
-                // }
+
             })
 
         //These two divs append as front and back to the above nest box    
