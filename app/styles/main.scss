@@ -27,7 +27,7 @@ body {
 
 }
 
-@media(min-width: 300px) {
+@media(min-width: 365px) {
   .tiny-screen {
     display: none;
     margin-bottom: 0;
@@ -190,7 +190,6 @@ body {
 
 
 
-
 //This class is page centered and contains the focal activity of the page
 .main-container {
   margin: 0 auto;
@@ -239,6 +238,27 @@ body {
     letter-spacing: -1px;
   }
   
+}
+
+.next-card {
+  background-image: radial-gradient(circle, gray, lightgray);
+  outline: none;
+  &:hover {
+    transform: scale(1.03)
+  }
+  &:active{
+    transform: scale(0.99)
+  }
+}
+.correct-answer {
+  background-image: radial-gradient(circle, gray, lightgray);
+  outline: none;
+  &:hover {
+    transform: scale(1.03)
+  }
+  &:active{
+    transform: scale(0.99)
+  }
 }
 
 @keyframes moveToCenter {

@@ -211,7 +211,7 @@ function createBoard() {
             innerBox.classList.toggle('flipped')
             let firstEl = unansweredArray.shift()
             unansweredArray.push(firstEl)
-            console.log(outerBox.parentNode.childNodes) // WTF, why does console.log fix the double card problem?
+            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
             setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
             setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
         }
@@ -220,7 +220,7 @@ function createBoard() {
             // call getNextCard, remove the current card from unanswered array
             outerBox.classList.add('step3')
             innerBox.classList.toggle('flipped')
-            console.log(outerBox.parentNode.childNodes) // WTF, why does console.log fix the double card problem?
+            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
             setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
             unansweredArray.splice(0, 1)
             setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
@@ -235,15 +235,6 @@ function createBoard() {
     
 
 
-// createBoard()     
 
 
 
-/*     stretch goal - add CSS cards and maybe create different random decks out of the array of possible questions
-    const cssButton = document.querySelector('.study-css');
-    cssButton.addEventListener('click', cssCardsMove)
-    
-    function cssCardsMove(evt) {
-        evt.preventDefault();
-        outerBox.classList.add('card-control')
-    } */
