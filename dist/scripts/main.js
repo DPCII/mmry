@@ -1,1 +1,240 @@
-"use strict";var introPage=document.querySelector(".overlay"),introContainer=document.createElement("section");introContainer.classList.add("intro-container");var introDescrip=document.createElement("p");introDescrip.classList.add("intro-descrip"),introDescrip.innerHTML="Create flashcards for your own study deck, or select from available options.";var introQuestion=document.createElement("input");introQuestion.classList.add("intro-question"),introQuestion.placeholder="Write your question here...";var introAnswer=document.createElement("input");introAnswer.classList.add("intro-answer"),introAnswer.placeholder="... then write the answer here.";var introSubmit=document.createElement("span");introSubmit.classList.add("intro-submit"),introSubmit.innerHTML="Submit",introSubmit.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(".intro-question"),n=document.querySelector(".intro-answer");addNewQA(t.value,n.value),t.value=null,n.value=null});var introComplete=document.createElement("span");introComplete.classList.add("intro-complete"),introComplete.innerHTML="Ready, Go";var availableOptions=document.createElement("div");availableOptions.classList.add("available-options");var jsStudyButton=document.createElement("span");jsStudyButton.classList.add("js-study-button"),jsStudyButton.innerHTML="JavaScript",jsStudyButton.addEventListener("click",function(e){e.preventDefault(),introPage.classList.add("intro-fade-add"),setTimeout(createBoard,500)}),availableOptions.appendChild(jsStudyButton),introPage.appendChild(availableOptions),introContainer.appendChild(introComplete),introContainer.appendChild(introSubmit),introContainer.appendChild(introAnswer),introContainer.appendChild(introQuestion),introContainer.appendChild(introDescrip),introPage.appendChild(introContainer);var createdArray=[];function addNewQA(e,t){createdArray.push({question:e.toString(),answer:t.toString()})}var cardArrayOfObj=[{question:"T or F: One-line arrow functions include an implicit return",answer:"True"},{question:"What are the JS primitive data types?",answer:"Boolean, Number, String, Undefined, Null, Symbol"},{question:"T or F: the array method .forEach() returns a value",answer:"False"},{question:"What array method returns true if one of its elements passes your provided comparison function?",answer:".some()"},{question:"What array method returns an empty array if no matches are found in your provided comparison function?",answer:".filter()"},{question:"What array method creates and returns a new array with the result of the provided function executed on every element?",answer:".map()"},{question:"Who are the greatest SEI instructors in the world?",answer:"Hammad and John"},{question:"What array method attached to the Array prototype creates an array out of your provided data?",answer:"Array.from()"},{question:"What built-in array variable returns the number of elements in the associated array?",answer:".length"},{question:"What array method populates your array with all the same value?",answer:".fill()"}],mainBox=document.querySelector(".main-content"),totalNumCards=cardArrayOfObj.length,randomArray=[],unansweredArray=[];function createBoard(){for(var e=0;e<cardArrayOfObj.length;e++)unansweredArray.push(cardArrayOfObj[e]);!function n(){var e=unansweredArray[0],r=document.createElement("div");r.classList.add("card-control-initial-load"),document.addEventListener("keypress",function(e){e.preventDefault(),"Space"===e.code&&a.classList.toggle("flipped")}),r.classList.add("step2");var a=document.createElement("div");a.classList.add("card"),a.addEventListener("click",function(){a.classList.toggle("flipped")});var t=document.createElement("div");t.classList.add("card-answer"),t.innerHTML=e.answer;var i=document.createElement("div");i.classList.add("card-question"),i.innerHTML=e.question,a.appendChild(t),a.appendChild(i),r.appendChild(a),mainBox.appendChild(r);var o=document.querySelector(".next-card"),s=document.querySelector(".correct-answer");o.addEventListener("click",function(e){e.preventDefault(),r.classList.add("step3"),a.classList.toggle("flipped");var t=unansweredArray.shift();unansweredArray.push(t),setTimeout(function(){return r.parentNode.removeChild(r)},600),setTimeout(function(){return n()},600)}),s.addEventListener("click",function(e){e.preventDefault(),r.classList.add("step3"),a.classList.toggle("flipped"),setTimeout(function(){return r.parentNode.removeChild(r)},600),unansweredArray.splice(0,1),setTimeout(function(){return n()},600)})}()}
+/*
+
+Tasks:
+
+Remove spam-ability.
+
+*/
+
+// Adding intro page
+const introPage = document.querySelector('.overlay');
+const introContainer = document.createElement('section')
+introContainer.classList.add('intro-container')
+const introDescrip = document.createElement('p')
+introDescrip.classList.add('intro-descrip')
+introDescrip.innerHTML = 'Create flashcards for your own study deck, or select from available options.'
+let introQuestion = document.createElement('input')
+introQuestion.classList.add('intro-question')
+introQuestion.placeholder = 'Write your question here...'
+let introAnswer = document.createElement('input')
+introAnswer.classList.add('intro-answer')
+introAnswer.placeholder = '... then write the answer here.'
+const introSubmit = document.createElement('span')
+introSubmit.classList.add('intro-submit')
+introSubmit.innerHTML = 'Submit'
+introSubmit.addEventListener('click', evt => {
+    evt.preventDefault()
+    let questionValue = document.querySelector('.intro-question')
+    let answerValue = document.querySelector('.intro-answer')
+    addNewQA(questionValue.value, answerValue.value)
+    questionValue.value = null;
+    answerValue.value = null;
+})
+const introComplete = document.createElement('span')
+introComplete.classList.add('intro-complete')
+introComplete.innerHTML = 'Ready, Go'
+const availableOptions = document.createElement('div')
+availableOptions.classList.add('available-options')
+
+const jsStudyButton = document.createElement('span')
+jsStudyButton.classList.add('js-study-button')
+jsStudyButton.innerHTML = 'JavaScript'
+jsStudyButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    introPage.classList.add('intro-fade-add')
+    setTimeout(createBoard, 500)
+})
+
+availableOptions.appendChild(jsStudyButton)
+
+introPage.appendChild(availableOptions)
+introContainer.appendChild(introComplete)
+introContainer.appendChild(introSubmit)
+introContainer.appendChild(introAnswer)
+introContainer.appendChild(introQuestion)
+introContainer.appendChild(introDescrip)
+introPage.appendChild(introContainer)
+
+// Adding custom cards
+
+let createdArray = []
+
+function addNewQA(inputQ, inputA) {
+
+    createdArray.push({question: inputQ.toString(), answer: inputA.toString()})
+}
+
+
+
+let cardArrayOfObj = [
+    {
+        question: 'T or F: One-line arrow functions include an implicit return',
+        answer: 'True'
+    },
+    {
+        question: 'What are the JS primitive data types?',
+        answer: 'Boolean, Number, String, Undefined, Null, Symbol'
+    },
+    {
+        question: 'T or F: the array method .forEach() returns a value',
+        answer: 'False'
+    },
+    {
+        question: 'What array method returns true if one of its elements passes your provided comparison function?',
+        answer: '.some()'
+    },
+    {
+        question: 'What array method returns an empty array if no matches are found in your provided comparison function?',
+        answer: '.filter()'
+    },
+    {
+        question: 'What array method creates and returns a new array with the result of the provided function executed on every element?',
+        answer: '.map()'
+    },
+    {
+        question: 'Who are the greatest SEI instructors in the world?',
+        answer: 'Hammad and John'
+    },
+    {
+        question: 'What array method attached to the Array prototype creates an array out of your provided data?',
+        answer: 'Array.from()'
+    },
+    {
+        question: 'What built-in array variable returns the number of elements in the associated array?',
+        answer: '.length'
+    },
+    {
+        question: 'What array method populates your array with all the same value?',
+        answer: '.fill()'
+    },
+  
+
+]
+
+// Grab main content container element
+const mainBox = document.querySelector('.main-content');
+
+// Setting state - this must grab 1 card from the test questions array
+const totalNumCards = cardArrayOfObj.length;
+let randomArray = [];
+let unansweredArray = [];
+
+
+
+// Creates and adds cards to the DOM
+function createBoard() {
+
+    // // loops through array of randomly generated numbers when board is created so that cards are in random order
+    //     let numberGenerator = function(arr) {
+    //       if (arr.length >= totalNumCards) return;
+    //       let randomNumber = Math.floor(Math.random() * totalNumCards);
+    //       if (arr.indexOf(randomNumber) < 0) {
+    //         arr.push(randomNumber);
+    //       }
+    //     numberGenerator(arr);
+    //     };
+    //   numberGenerator(randomArray);
+
+    
+    // loops through card creation
+    for (let i = 0; i < cardArrayOfObj.length; i++) {
+
+        //Push all objects on original data to a new array of "unanswered" questions
+        unansweredArray.push(cardArrayOfObj[i])
+
+    } 
+
+    // New loop to iterate through unanswered questions and create cards to send to the DOM.
+    // Call new card.
+    function newCard() {
+            
+        //Take one card from unanswered array and create it on the DOM
+        let currentCard = unansweredArray[0]
+        
+        //Outer box of each card that allows arrangement on the DOM
+        let outerBox = document.createElement('div');
+            outerBox.classList.add('card-control-initial-load')
+
+
+            // Event listener for spacebar to flip cards
+            document.addEventListener('keypress', (evt) => {
+                evt.preventDefault();
+                if(evt.code === 'Space') {
+                    innerBox.classList.toggle('flipped')
+                }
+            } )
+
+            // outerBox.setAttribute('card-number', randomArray[i]);
+            outerBox.classList.add('step2');
+        
+        //Box of nested divs necessary to animate cards
+        let innerBox = document.createElement('div');
+            innerBox.classList.add('card');
+            innerBox.addEventListener('click', () => {
+                innerBox.classList.toggle('flipped')
+                console.log(innerBox.classList)
+                // let innerBoxClasses = Array.from(innerBox.classList)
+                // if(innerBoxClasses.some((el) => el === 'flipped')) {
+                //     innerBox.classList.add('flipped2')
+                // } else {
+                //     innerBox.classList.remove('flipped2')
+                // }
+            })
+
+        //These two divs append as front and back to the above nest box    
+        let cardSide1 = document.createElement('div');
+            cardSide1.classList.add('card-answer');
+            cardSide1.innerHTML = currentCard.answer
+            
+        let cardSide2 = document.createElement('div');
+            cardSide2.classList.add('card-question');
+            cardSide2.innerHTML = currentCard.question
+
+            innerBox.appendChild(cardSide1);
+            innerBox.appendChild(cardSide2);
+            
+            outerBox.appendChild(innerBox);
+            mainBox.appendChild(outerBox);
+
+        
+
+        // Grab list buttons
+        let nextCardButton = document.querySelector('.next-card')
+        let correctAnswerButton = document.querySelector('.correct-answer')
+
+        nextCardButton.addEventListener('click', getNextCard)
+        correctAnswerButton.addEventListener('click', rightAnswer)
+            
+        function getNextCard(evt) {
+            evt.preventDefault();
+            outerBox.classList.add('step3')
+            innerBox.classList.toggle('flipped')
+            let firstEl = unansweredArray.shift()
+            unansweredArray.push(firstEl)
+            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
+            setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
+            setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
+        }
+        function rightAnswer(evt) {
+            evt.preventDefault();
+            // call getNextCard, remove the current card from unanswered array
+            outerBox.classList.add('step3')
+            innerBox.classList.toggle('flipped')
+            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
+            setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
+            unansweredArray.splice(0, 1)
+            setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
+
+        }
+
+    } // This closes newCard()
+
+    newCard();
+
+} // This closes createBoard()
+    
+
+
+
+
+
