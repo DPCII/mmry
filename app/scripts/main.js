@@ -33,26 +33,28 @@ introComplete.addEventListener('click', evt => {
     evt.preventDefault()
     // Ideally I would add a prompt to name the deck, which also names the variable, and places it in the list. But this would need either a database or the use of localstorage. 
     cardArrayOfObj = createdArray;
-    introPage.classList.add('intro-fade-add')
-    setTimeout(createBoard, 500)
+    introPage.classList.remove('intro-fade-reverse');
+    introPage.classList.add('intro-fade-add');
+    setTimeout(createBoard, 500);
 })
 
 
 // Lists the finished decks
-const availableOptions = document.createElement('div')
-availableOptions.classList.add('available-options')
+const availableOptions = document.createElement('div');
+availableOptions.classList.add('available-options');
 
 
 // Pre-made deck
-const jsStudyButton = document.createElement('span')
-jsStudyButton.classList.add('js-study-button')
+const jsStudyButton = document.createElement('span');
+jsStudyButton.classList.add('js-study-button');
 jsStudyButton.innerHTML = 'JavaScript'
 jsStudyButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     cardArrayOfObj = jsDeck
+    introPage.classList.remove('intro-fade-reverse');
     introPage.classList.add('intro-fade-add')
     setTimeout(createBoard, 500)
-})
+});
 
 
 // Pre-made deck appended
@@ -174,7 +176,6 @@ function createBoard() {
 
             // Event listener for spacebar to flip cards
             document.addEventListener('keypress', (evt) => {
-                evt.preventDefault();
                 if(evt.code === 'Space') {
                     innerBox.classList.toggle('flipped')
                 }
@@ -207,7 +208,18 @@ function createBoard() {
             outerBox.appendChild(innerBox);
             mainBox.appendChild(outerBox);
 
-        
+        // Fx to restart when card deck is complete
+        function checkForComplete() {
+            console.log('check is firing')
+           if (unansweredArray.length === 0) {
+               console.log('sdfsdfsfdsdfdfdfdfd')
+               // do thing with overlay
+               introPage.classList.remove('intro-fade-add');
+               introPage.classList.add('intro-fade-reverse');
+           } else {
+               return null
+           }
+        }
 
         // Grab list buttons
         let nextCardButton = document.querySelector('.next-card')
@@ -218,23 +230,46 @@ function createBoard() {
             
         function getNextCard(evt) {
             evt.preventDefault();
-            outerBox.classList.add('step3')
-            innerBox.classList.toggle('flipped')
-            let firstEl = unansweredArray.shift()
-            unansweredArray.push(firstEl)
-            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
-            setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
-            setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
+            outerBox.classList.add('step3');
+            innerBox.classList.toggle('flipped');
+            let firstEl = unansweredArray.shift();
+            unansweredArray.push(firstEl);
+            const delay = time => new Promise(resolve => setTimeout(resolve, time));
+            delay(600).then(() => {
+                return new Promise(function(resolve, reject) {
+                    outerBox.parentNode.removeChild(outerBox);
+                    resolve();
+                })
+                .then((output) => {
+                    newCard();
+                    return output
+                })
+                .catch(err => console.log(err))
+            })
         }
         function rightAnswer(evt) {
             evt.preventDefault();
             // call getNextCard, remove the current card from unanswered array
-            outerBox.classList.add('step3')
-            innerBox.classList.toggle('flipped')
-            console.log(outerBox.parentNode.childNodes) // Why does console.log fix the double card problem?
-            setTimeout(() => outerBox.parentNode.removeChild(outerBox), 600)
-            unansweredArray.splice(0, 1)
-            setTimeout(() => newCard(), 600); // The delay must be exactly the same or else the DOM tangles up.
+            outerBox.classList.add('step3');
+            innerBox.classList.toggle('flipped');
+            
+            const delay = time => new Promise(resolve => setTimeout(resolve, time));
+            delay(600).then(() => {
+                return new Promise(function(resolve, reject) {
+                    outerBox.parentNode.removeChild(outerBox);
+                    unansweredArray.splice(0, 1);
+                    resolve();
+                })
+                .then((output) => {
+                    checkForComplete();
+                    return output
+                })
+                .then((output) => {
+                    newCard();
+                    return output 
+                })
+                .catch(err => console.log(err))
+            })
 
         }
 

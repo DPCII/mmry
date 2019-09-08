@@ -174,6 +174,12 @@ body {
     animation-fill-mode: forwards;
   }
 
+  .intro-fade-reverse {
+    animation-name: introReverse;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+
 @keyframes introFade {
   0% {
     transform: translateY(0%)
@@ -183,6 +189,18 @@ body {
   }
   100% {
     transform: translateY(200%)
+  }
+}
+
+@keyframes introReverse {
+  0% {
+    transform: translateY(200%)
+  }
+  90% {
+    transform: translateY(-5%)
+  }
+  100% {
+    transform: translateY(0%)
   }
 }
 
@@ -284,7 +302,6 @@ body {
   height: 235px;
   width: 170px;
   background-color: transparent;
-  // transform: translate(-600%, -90%);
   perspective: 600px;
 }
 
@@ -298,15 +315,7 @@ body {
   animation: moveOffCenter 1s ease-in-out;
   animation-fill-mode: forwards;
 }
-/* .card-control {
-  height: 235px;
-  width: 155px;
-  background-color: transparent;
-} */
 
-
-
-//test
 .card {
   height: 100%;
   width: 100%;
@@ -314,7 +323,6 @@ body {
   transition: transform 1s;
   transform-style: preserve-3d;
   transform-origin: bottom;
-  backface-visibility: hidden;
 }
 
 .card div {
@@ -325,7 +333,6 @@ body {
   height: 100%;
   width: 100%;
   border: 1px black solid;
-  backface-visibility: hidden;
   text-align: center;
   position: absolute;
   box-shadow: 1px 1px 7px .5px black;
@@ -350,7 +357,6 @@ body {
 
 .flipped {
   transform: translateY(-100%) rotateX(180deg);
-  backface-visibility: hidden;
 }
 
 
