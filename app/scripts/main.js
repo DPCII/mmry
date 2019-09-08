@@ -1,10 +1,4 @@
-/*
 
-Tasks:
-
-Remove spam-ability.
-
-*/
 
 // Adding intro page
 const introPage = document.querySelector('.overlay');
@@ -82,9 +76,6 @@ function addNewQA(inputQ, inputA) {
 
     createdArray.push({question: inputQ.toString(), answer: inputA.toString()})
 }
-
-// Ready button adds the array created to the list of available tests. But this must prompt for a name for the deck so it can be inserted in the deck's button.
-
 
 
 
