@@ -314,6 +314,7 @@ body {
   transition: transform 1s;
   transform-style: preserve-3d;
   transform-origin: bottom;
+  backface-visibility: hidden;
 }
 
 .card div {
@@ -331,17 +332,25 @@ body {
 }
 
 .card-question {
-  background-image: radial-gradient(closest-side, rgb(247, 225, 225), rgb(255, 236, 236));
-
+  background-image: url(../images/clean-gray-paper.png);
+  background-repeat: repeat;
+  // background-color: radial-gradient(closest-side, rgba(247, 225, 225,.9), rgba(255, 236, 236,.9));
+  background-color: rgb(184, 161, 161);
+  backface-visibility: hidden;
 }
 
 .card-answer {
-  background-color: #eee;
+  background-image: url(../images/clean-gray-paper.png);
+  background-repeat: repeat;
+  // background-color: radial-gradient(closest-side, rgba(247, 225, 225,.9), rgba(255, 236, 236,.9));
+  background-color: rgb(184, 176, 161);
   transform: rotateX(180deg);
+  backface-visibility: hidden;
 }
 
 .flipped {
-  transform: translateY(-100%) rotateX(180deg)
+  transform: translateY(-100%) rotateX(180deg);
+  backface-visibility: hidden;
 }
 
 
