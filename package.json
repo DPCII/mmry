@@ -40,6 +40,7 @@
     "serve:dist": "cross-env NODE_ENV=production gulp serve",
     "start": "gulp serve",
     "build": "cross-env NODE_ENV=production gulp",
+    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages",
     "test": "npm run serve:test",
     "tasks": "gulp --tasks"
   },
