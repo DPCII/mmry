@@ -47,7 +47,7 @@ availableOptions.classList.add('available-options');
 // Pre-made deck
 const jsStudyButton = document.createElement('span');
 jsStudyButton.classList.add('js-study-button');
-jsStudyButton.innerHTML = 'JavaScript'
+jsStudyButton.innerHTML = 'JavaScript Arrays'
 jsStudyButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     cardArrayOfObj = jsDeck
