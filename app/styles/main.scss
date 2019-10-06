@@ -22,7 +22,12 @@ body {
     justify-content: center;
     align-items: center;
     padding: 75px;
-    margin-bottom: 5000px;
+  }
+  .overylay {
+    display: none;
+  }
+  main {
+    display: none;
   }
 
 }
@@ -31,7 +36,12 @@ body {
   .tiny-screen {
     display: none;
     margin-bottom: 0;
+    -webkit-margin-bottom: 0;
     padding: 0;
+  }
+
+  main {
+    display: visible;
   }
 
   .overlay {

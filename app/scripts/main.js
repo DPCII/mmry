@@ -105,16 +105,12 @@ let jsDeck = [
         answer: '.filter()'
     },
     {
-        question: 'What array method creates and returns a new array with the result of the provided function executed on every element?',
-        answer: '.map()'
+        question: '.map()',
+        answer: 'creates and returns a new array with the result of the provided function executed on every element'
     },
     {
-        question: 'Who are the greatest SEI instructors in the world?',
-        answer: 'Hammad and John'
-    },
-    {
-        question: 'What array method attached to the Array prototype creates an array out of your provided data?',
-        answer: 'Array.from()'
+        question: 'Array.from()',
+        answer: 'Creates an array out of an iterable object or other data'
     },
     {
         question: 'What built-in array variable returns the number of elements in the associated array?',
@@ -124,6 +120,51 @@ let jsDeck = [
         question: 'What array method populates your array with all the same value?',
         answer: '.fill()'
     },
+    {
+        question: 'Does .pop() return a modified array or the last element popped out?',
+        answer: 'The last element removed from the Array'
+    },
+    {
+        question: 'What does .push() return?',
+        answer: 'The new array length, after inserting the provided element at the beginning of Array'
+    },
+    {
+        question: 'Does .shift() return the length of the new Array?',
+        answer: 'No, it remove the first element of Array, and returns the removed element'
+    },
+    {
+        question: '.splice()',
+        answer: 'arr.splice(startIndex, opt. howManyDelete, insertThis, insertThisInfinity...) Returns removed elements as an Array'
+    },
+    {
+        question: '.find()',
+        answer: 'Returns first match. Syntax .find(element, index, referenceToTheArray)'
+    },
+    {
+        question: '.filter()',
+        answer: 'Returns all matching elements. Syntax like .find, .filter(element, index, referenceToTheArray)'
+    },
+    {
+        question: '.sort()',
+        answer: 'Sorts in place, changing the order of elements. Sorts elements as strings by default. If sorting numbers, supply a function. Mutates array. Returns sorted array.'
+    },
+    {
+        question: '.reverse()',
+        answer: 'Returns array with elements in reverse order'
+    },
+    {
+        question: '.split()',
+        answer: 'Creates an array from a string. Must provide the delineator you want to separate the string into elements. Returns the Array'
+    },
+    {
+        question: '.join()',
+        answer: 'Creates a STRING from an array, with the value passed in serving as the separator between elements. Can pass in multiple arrays as optional arguments'
+    },
+    {
+        question: '.reduce()',
+        answer: 'Provides one return. Performs function provided on each element, but accumulates the result into the first argument (ie. .reduce(previousValue, nextElement, index, referenceToArray))'
+    },
+   
 ]
 
 // Array used to populate unanswered questions array
