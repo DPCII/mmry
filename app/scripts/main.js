@@ -33,6 +33,9 @@ introComplete.addEventListener('click', evt => {
     evt.preventDefault()
     // Ideally I would add a prompt to name the deck, which also names the variable, and places it in the list. But this would need either a database or the use of localstorage. 
     cardArrayOfObj = createdArray;
+    if (cardArrayOfObj.length === 0) {
+        return null
+    }
     introPage.classList.remove('intro-fade-reverse');
     introPage.classList.add('intro-fade-add');
     setTimeout(createBoard, 500);
