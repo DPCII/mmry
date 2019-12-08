@@ -1,7 +1,7 @@
 
 
 // Adding intro page
-const introPage = document.querySelector('.overlay');
+const introPage = document.querySelector('.overlay')
 const introContainer = document.createElement('section')
 introContainer.classList.add('intro-container')
 const introDescrip = document.createElement('p')
@@ -32,28 +32,39 @@ introComplete.innerHTML = 'Ready, Go'
 introComplete.addEventListener('click', evt => {
     evt.preventDefault()
     // Ideally I would add a prompt to name the deck, which also names the variable, and places it in the list. But this would need either a database or the use of localstorage. 
-    cardArrayOfObj = createdArray;
+    cardArrayOfObj = createdArray
     if (cardArrayOfObj.length === 0) {
         return null
     }
-    introPage.classList.remove('intro-fade-reverse');
-    introPage.classList.add('intro-fade-add');
+    introPage.classList.remove('intro-fade-reverse')
+    introPage.classList.add('intro-fade-add')
     setTimeout(createBoard, 500);
 })
 
 
 // Lists the finished decks
-const availableOptions = document.createElement('div');
-availableOptions.classList.add('available-options');
+const availableOptions = document.createElement('div')
+availableOptions.classList.add('available-options')
 
 
 // Pre-made deck
-const jsStudyButton = document.createElement('span');
-jsStudyButton.classList.add('js-study-button');
+const jsStudyButton = document.createElement('span')
+jsStudyButton.classList.add('study-deck-button')
 jsStudyButton.innerHTML = 'JavaScript Arrays'
 jsStudyButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
     cardArrayOfObj = jsDeck
+    introPage.classList.remove('intro-fade-reverse');
+    introPage.classList.add('intro-fade-add')
+    setTimeout(createBoard, 500)
+});
+
+const javaMathButton = document.createElement('span')
+javaMathButton.classList.add('study-deck-button')
+javaMathButton.innerHTML = 'Java Math Methods'
+javaMathButton.addEventListener('click', (evt) => {
+    evt.preventDefault()
+    cardArrayOfObj = javaMath
     introPage.classList.remove('intro-fade-reverse');
     introPage.classList.add('intro-fade-add')
     setTimeout(createBoard, 500)
@@ -62,6 +73,7 @@ jsStudyButton.addEventListener('click', (evt) => {
 
 // Pre-made deck appended
 availableOptions.appendChild(jsStudyButton)
+availableOptions.appendChild(javaMathButton)
 
 
 // Appending all above created DOM elements
@@ -170,6 +182,33 @@ let jsDeck = [
    
 ]
 
+const javaMath = [
+    {
+        question: 'Math.abs(x)',
+        answer: 'Returns absolute value of x (positive value). i.e. Math.abs(int) Math.abs(long) Math.abs(float) Math.abs(double)'
+    },
+    {
+        question: 'Math.ceil()',
+        answer: 'Rounds UP to the nearest integer. If it\'s a float or double, it will resolve to a whole number of that type' 
+    },
+    {
+        question: 'Math.floor()',
+        answer: 'Rounds DOWN to the nearest integer. If it\'s a float or double, it will resolve to a whole number of that type'
+    },
+    {
+        question: 'Math.max(x, y)',
+        answer: 'Returns the greater of two values'
+    },
+    {
+        question: 'Math.min(x, y)',
+        answer: 'Returns the lesser of two values'
+    },
+    {
+        question: 'Math.round()',
+        answer: 'Rounds a float or double to the nearest integer while keeping the decimal, i.e 24.0'
+    },
+]
+
 // Array used to populate unanswered questions array
 let cardArrayOfObj = []
 
@@ -226,10 +265,10 @@ function createBoard() {
             } )
 
             // outerBox.setAttribute('card-number', randomArray[i]);
-            outerBox.classList.add('step2');
+            outerBox.classList.add('step2')
         
         //Box of nested divs necessary to animate cards
-        let innerBox = document.createElement('div');
+        let innerBox = document.createElement('div')
             innerBox.classList.add('card');
             innerBox.addEventListener('click', () => {
                 innerBox.classList.toggle('flipped')
@@ -238,19 +277,19 @@ function createBoard() {
             })
 
         //These two divs append as front and back to the above nest box    
-        let cardSide1 = document.createElement('div');
-            cardSide1.classList.add('card-answer');
+        let cardSide1 = document.createElement('div')
+            cardSide1.classList.add('card-answer')
             cardSide1.innerHTML = currentCard.answer
             
-        let cardSide2 = document.createElement('div');
-            cardSide2.classList.add('card-question');
+        let cardSide2 = document.createElement('div')
+            cardSide2.classList.add('card-question')
             cardSide2.innerHTML = currentCard.question
 
-            innerBox.appendChild(cardSide1);
-            innerBox.appendChild(cardSide2);
+            innerBox.appendChild(cardSide1)
+            innerBox.appendChild(cardSide2)
             
-            outerBox.appendChild(innerBox);
-            mainBox.appendChild(outerBox);
+            outerBox.appendChild(innerBox)
+            mainBox.appendChild(outerBox)
 
         // Fx to restart when card deck is complete
         function checkForComplete() {
@@ -274,42 +313,42 @@ function createBoard() {
             
         function getNextCard(evt) {
             evt.preventDefault();
-            outerBox.classList.add('step3');
-            innerBox.classList.toggle('flipped');
-            let firstEl = unansweredArray.shift();
+            outerBox.classList.add('step3')
+            innerBox.classList.toggle('flipped')
+            let firstEl = unansweredArray.shift()
             unansweredArray.push(firstEl);
-            const delay = time => new Promise(resolve => setTimeout(resolve, time));
+            const delay = time => new Promise(resolve => setTimeout(resolve, time))
             delay(600).then(() => {
                 return new Promise(function(resolve, reject) {
-                    outerBox.parentNode.removeChild(outerBox);
-                    resolve();
+                    outerBox.parentNode.removeChild(outerBox)
+                    resolve()
                 })
                 .then((output) => {
-                    newCard();
+                    newCard()
                     return output
                 })
                 .catch(err => console.log(err))
             })
         }
         function rightAnswer(evt) {
-            evt.preventDefault();
+            evt.preventDefault()
             // call getNextCard, remove the current card from unanswered array
-            outerBox.classList.add('step3');
-            innerBox.classList.toggle('flipped');
+            outerBox.classList.add('step3')
+            innerBox.classList.toggle('flipped')
             
-            const delay = time => new Promise(resolve => setTimeout(resolve, time));
+            const delay = time => new Promise(resolve => setTimeout(resolve, time))
             delay(600).then(() => {
                 return new Promise(function(resolve, reject) {
-                    outerBox.parentNode.removeChild(outerBox);
-                    unansweredArray.splice(0, 1);
-                    resolve();
+                    outerBox.parentNode.removeChild(outerBox)
+                    unansweredArray.splice(0, 1)
+                    resolve()
                 })
                 .then((output) => {
-                    checkForComplete();
+                    checkForComplete()
                     return output
                 })
                 .then((output) => {
-                    newCard();
+                    newCard()
                     return output 
                 })
                 .catch(err => console.log(err))
@@ -319,7 +358,7 @@ function createBoard() {
 
     } // This closes newCard()
 
-    newCard();
+    newCard()
 
 } // This closes createBoard()
     
