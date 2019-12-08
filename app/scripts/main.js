@@ -182,6 +182,8 @@ let jsDeck = [
    
 ]
 
+// Pre-made Java Deck
+
 const javaMath = [
     {
         question: 'Math.abs(x)',
@@ -207,6 +209,39 @@ const javaMath = [
         question: 'Math.round()',
         answer: 'Rounds a float or double to the nearest integer while keeping the decimal, i.e 24.0'
     },
+    {
+        question: 'Math.log()',
+        answer: 'Calculates logarithm of the provided argument based on Euler\'s number.'
+    },
+    {
+        question: 'Math.log10()',
+        answer: 'Calculates logarithm of the provided argument with base 10'
+    },
+    {
+        question: 'Math.pow(x, y)',
+        answer: 'Multiplies the first argument to the power of the second argument'
+    },
+    {
+        question: 'Math.sqrt()',
+        answer: 'Calculates square root of the argument. Data type is primitive double'
+    },
+    {
+        question: 'Math.PI',
+        answer: 'This is a constant that is close to the mathematical definition of pi. Needed for Trig functions'
+    },
+    {
+        question: 'Math.sin()',
+        answer: 'Calculate the sine value of an angle in radians. Also Math.cos() and Math.tan()'
+    },
+    {
+        question: 'Math.toDegrees()',
+        answer: 'Converts from radians to degrees'
+    },
+    {
+        question: 'Math.toRadians()',
+        answer: 'Converts from degrees to radians'
+    },
+
 ]
 
 // Array used to populate unanswered questions array
