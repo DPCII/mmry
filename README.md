@@ -2,6 +2,8 @@
 
 ## A peaceful study platform.
 
+https://dpcii.github.io/mmry/
+
 This memorization flash card game rotates through your study material and eliminates the questions you are comfortable with, rotating your unanswered or incorrect cards back into the mix. 
 
 ### Technology

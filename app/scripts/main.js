@@ -161,7 +161,7 @@ let jsDeck = [
     },
     {
         question: '.sort()',
-        answer: 'Sorts in place, changing the order of elements. Sorts elements as strings by default. If sorting numbers, supply a function. Mutates array. Returns sorted array.'
+        answer: 'Sorts in place, changing the order of elements. Sorts elements as strings. If sorting numbers, supply a function. Mutates. Returns sorted array.'
     },
     {
         question: '.reverse()',
@@ -177,7 +177,7 @@ let jsDeck = [
     },
     {
         question: '.reduce()',
-        answer: 'Provides one return. Performs function provided on each element, but accumulates the result into the first argument (ie. .reduce(previousValue, nextElement, index, referenceToArray))'
+        answer: 'Accumulates the result into the first argument .reduce(previousValue, nextElement, index, referenceToArray)'
     },
    
 ]
